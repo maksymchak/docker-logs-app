@@ -1,7 +1,17 @@
-FROM node 
-WORKDIR /app 
+FROM node
+
+WORKDIR /app
+
 COPY package.json /app
+
 RUN npm install
-COPY . . 
-EXPOSE 3000 
-CMD ["node", "app.js"] 
+
+COPY . .
+
+ENV PORT 3000
+
+EXPOSE $PORT
+
+VOLUME ["/app/data"]
+
+CMD ["node", "app.js"]
